@@ -13,8 +13,8 @@ library(ggplot2)
 ################################################################################
 
 ### directories ---
-in_dir <- "~/Documents/BFX_proj/Miniport/_input/Chow_PNAS_2020/"
-out_dir <- "~/Documents/BFX_proj/Miniport/_output/Chow_PNAS_2020/"
+in_dir <- "~/Documents/BFX_proj/RNAseq_pipeline/_input/Chow_PNAS_2020/"
+out_dir <- "~/Documents/BFX_proj/RNAseq_pipeline/_output/Chow_PNAS_2020/"
 ### normalized counts ---
 n_count_ <- data.frame(read_csv(paste0(in_dir, "Chow_PNAS_normcounts.csv")))
 c_mtx <- n_count_[, 2:ncol(n_count_)]
@@ -46,7 +46,9 @@ anno_col <- HeatmapAnnotation(age = meta_srt$age,
                               path_T_stage = meta_srt$path_T_stage,
                               col = col_leg,
                               show_legend = F,
-                              annotation_name_side = "left")
+                              annotation_name_side = "left",
+                              annotation_name_gp= gpar(fontsize = 8),
+                              simple_anno_size = unit(0.25, "cm"))
 
 rm(list = ls()[grepl("_$", ls())]) # clean up
 
@@ -72,7 +74,7 @@ dev.off()
 # output: pca_df, data.frame to plot PCA and srt; pca_var, percent variance
 ################################################################################
 
-source("~/Documents/BFX_proj/Miniport/R_code/pca.R")
+source("~/Documents/BFX_proj/RNAseq_pipeline/R_code/pca.R")
 
 for(m_s in srt){
   png(paste0(out_dir, "fig/pca_", m_s, ".png"), height = 400, width = 400, res = 100)
@@ -98,22 +100,36 @@ for(m_s in srt){
   dev.off()
 }
 
+# export PCA coordinates and percent variance
+write.csv(pca_df, paste0(out_dir, "df/pca.csv"), row.names = T)
+saveRDS(pca_var, paste0(out_dir, "df/pca_var.rds"))
+
 ################################################################################
 # heatmap
 # 
 # output: hm, Heatmap
 ################################################################################
 
-source("~/Documents/BFX_proj/Miniport/R_code/ap_heatmap.R")
+source("~/Documents/BFX_proj/RNAseq_pipeline/R_code/ap_heatmap.R")
 
 png(paste0(out_dir, "fig/heatmap.png"), height = 500, width = 1000, res = 100)
 draw(hm)
 dev.off()
 
+# export HeatmapList for additional downstream analysis
+saveRDS(draw(hm), paste0(out_dir, "df/heatmap_list.rds"))
 
+################################################################################
+# wgcna
+# 
+# output: w_hm, correlation plot; mod_genes_long, genes and mod_gsea_long, pathways associated with gene modules
+################################################################################
 
+source("~/Documents/BFX_proj/RNAseq_pipeline/R_code/wgcna.R")
 
+png(paste0(out_dir, "fig/wgcna_corplot.png"), height = 700, width = 500, res = 100)
+draw(w_hm)
+dev.off()
 
-
-
-
+write.csv(mod_genes_long, paste0(out_dir, "df/mod_genes.csv"))
+write.csv(mod_gsea_long, paste0(out_dir, "df/mod_gsea.csv"))
