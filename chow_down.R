@@ -15,6 +15,7 @@ library(ggplot2)
 ### directories ---
 in_dir <- "~/Documents/BFX_proj/RNAseq_pipeline/_input/Chow_PNAS_2020/"
 out_dir <- "~/Documents/BFX_proj/RNAseq_pipeline/_output/Chow_PNAS_2020/"
+R_dir <- "~/Documents/BFX_proj/RNAseq_pipeline/R_code/"
 ### normalized counts ---
 n_count_ <- data.frame(read_csv(paste0(in_dir, "Chow_PNAS_normcounts.csv")))
 c_mtx <- n_count_[, 2:ncol(n_count_)]
@@ -62,7 +63,7 @@ rm(list = ls()[grepl("_$", ls())]) # clean up
 # color legend
 ################################################################################
 
-source("~/Documents/BFX_proj/Miniport/R_code/color_legend.R")
+source(paste0(R_dir, "color_legend.R"))
 
 png(paste0(out_dir, "fig/legend.png"), height = 60 * (length(lgd) + 1), width = 30 * max(lengths(col_leg)), res = 100)
 draw(packLegend(list = lgd, direction = "vertical"))
@@ -74,7 +75,7 @@ dev.off()
 # output: pca_df, data.frame to plot PCA and srt; pca_var, percent variance
 ################################################################################
 
-source("~/Documents/BFX_proj/RNAseq_pipeline/R_code/pca.R")
+source(paste0(R_dir, "pca.R"))
 
 for(m_s in srt){
   png(paste0(out_dir, "fig/pca_", m_s, ".png"), height = 400, width = 400, res = 100)
@@ -110,7 +111,7 @@ saveRDS(pca_var, paste0(out_dir, "df/pca_var.rds"))
 # output: hm, Heatmap
 ################################################################################
 
-source("~/Documents/BFX_proj/RNAseq_pipeline/R_code/ap_heatmap.R")
+source(paste0(R_dir, "ap_heatmap.R"))
 
 png(paste0(out_dir, "fig/heatmap.png"), height = 500, width = 1000, res = 100)
 draw(hm)
@@ -125,7 +126,7 @@ saveRDS(draw(hm), paste0(out_dir, "df/heatmap_list.rds"))
 # output: w_hm, correlation plot; mod_genes_long, genes and mod_gsea_long, pathways associated with gene modules
 ################################################################################
 
-source("~/Documents/BFX_proj/RNAseq_pipeline/R_code/wgcna.R")
+source(paste0(R_dir, "wgcna.R"))
 
 png(paste0(out_dir, "fig/wgcna_corplot.png"), height = 700, width = 500, res = 100)
 draw(w_hm)
