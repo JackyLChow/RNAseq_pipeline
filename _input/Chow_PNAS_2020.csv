@@ -1,0 +1,9 @@
+﻿description,value
+counts_file,~/Documents/BFX_proj/_data/Chow_PNAS_2020/Chow_PNAS_rawcounts.csv
+counts_type,raw
+metadata_file,~/Documents/BFX_proj/_data/Chow_PNAS_2020/Chow_PNAS_meta.csv
+output_folder,~/Documents/BFX_proj/RNAseq_pipeline/_output/Chow_PNAS_2020/
+metadata_batch_column,sex
+metadata_comparison_column,treatment
+metadata_wgcna_columns,"sex, path_T_stage, treatment"
+test,
