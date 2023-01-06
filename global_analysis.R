@@ -27,7 +27,7 @@ library(clusterProfiler)
 
 ###---data import---------------------------------------------------------------
 # parameters file
-parameters <- data.frame(read_csv("~/Documents/BFX_proj/###/_input/MEDI1191.csv"))
+parameters <- data.frame(read_csv(""))
 rownames(parameters) <- parameters[, "description"]
 
 # checkpoints
