@@ -193,6 +193,11 @@ for(counts_ in names(counts_data)){
   col_fun_ <- circlize::colorRamp2(c(-col_max_, -col_max_/2, 0, col_max_/2, col_max_),
                                    c("purple1", "purple4", "black", "yellow4", "yellow1"))
   
+  col_fdr_ <- Legend(title = "fdr",
+                     labels = c("< 0.01", "< 0.05", "< 0.5", "> 0.5"),
+                     legend_gp = gpar(fill = c("white", "grey75", "grey25", "black")),
+                     border = "black")
+  
   # heatmap module annotation with shortened GSEA and gene lists
   module_data_ <- data.frame(row.names = module_genes_$module_name, mod = module_genes_$module_name)
   module_data_$paths <- NULL
@@ -256,7 +261,7 @@ for(counts_ in names(counts_data)){
                                 },
                                 cluster_columns = F)
   
-  print(hm_)
+  draw(hm_, annotation_legend_list = list(col_fdr_))
   dev.off()
   checkpoint <- rbind(checkpoint, c(paste0("WGCNA_correlation_heatmap_", counts_, ".png"), format(Sys.time(), "%Y-%m-%d %H:%M:%S %Z"))); write.csv(checkpoint, checkpoint_file, row.names = F)
   

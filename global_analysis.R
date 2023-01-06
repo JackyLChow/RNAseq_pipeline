@@ -73,7 +73,7 @@ if(any(grepl("sample_counts_distribution", checkpoint$file))){
 }
 
 ###---PCA-----------------------------------------------------------------------
-if(all(c("pca_results.RDS") %in% checkpoint$file)){
+if(all(c("PCA_results.RDS") %in% checkpoint$file)){
   cat("\nPCA results already exist\n")
 } else {
   cat(paste0("\ncalculating PCA and plotting by ",
