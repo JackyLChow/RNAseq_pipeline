@@ -27,11 +27,11 @@ library(clusterProfiler)
 
 ###---data import---------------------------------------------------------------
 # parameters file
-parameters <- data.frame(read_csv("~/Documents/BFX_proj/RNAseq_pipeline/_input/Chow_PNAS_2020.csv"))
+parameters <- data.frame(read_csv("~/Documents/BFX_proj/###/_input/MEDI1191.csv"))
 rownames(parameters) <- parameters[, "description"]
 
 # checkpoints
-checkpoint_file <- "~/Documents/BFX_proj/RNAseq_pipeline/_output/Chow_PNAS_2020/checkpoint.csv"
+checkpoint_file <- parameters["checkpoint_file", "value"]
 if("checkpoint.csv" %in% list.files(parameters["output_folder", "value"])){
   checkpoint <- data.frame(read_csv(checkpoint_file))
 } else {
@@ -44,6 +44,7 @@ if("checkpoint.csv" %in% list.files(parameters["output_folder", "value"])){
 
 # scripts
 normalization_and_batch_correction <- "~/Documents/BFX_proj/RNAseq_pipeline/R_code/data_load_clean_v1.R" # counts pre-processing
+counts_distribution <- "~/Documents/BFX_proj/RNAseq_pipeline/R_code/counts_distribution_v1.R" # QC counts by sample
 PCA_calculation <- "~/Documents/BFX_proj/RNAseq_pipeline/R_code/pca_v1.R" # PCA pipeline
 heatmap_generation <- "~/Documents/BFX_proj/RNAseq_pipeline/R_code/heatmap_v1.R" # heatmap pipeline
 WGCNA_calculation <- "~/Documents/BFX_proj/RNAseq_pipeline/R_code/wgcna_v1.R" # heatmap pipeline
@@ -61,6 +62,15 @@ if(any(grepl("^expression", checkpoint$file))){
     }
     cat("... complete ...")
   }
+
+###---counts_distribution-------------------------------------------------------
+if(any(grepl("sample_counts_distribution", checkpoint$file))){
+  cat("\ncounts distribution results already exist\n")
+} else {
+  cat("plotting counts distribution")
+  source(counts_distribution)
+  cat("... complete ...")
+}
 
 ###---PCA-----------------------------------------------------------------------
 if(all(c("pca_results.RDS") %in% checkpoint$file)){

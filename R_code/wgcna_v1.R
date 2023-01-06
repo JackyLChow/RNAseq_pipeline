@@ -15,10 +15,10 @@ counts_names <- str_remove(counts_files, ".RDS")
 counts_data <- list()
 for(i in 1:length(counts_names)){
   # transpose counts data for WGCNA
-  counts_data[[counts_names[i]]] <- t(readRDS(paste0("~/Documents/BFX_proj/RNAseq_pipeline/_output/Chow_PNAS_2020/", counts_files[i])))
+  counts_data[[counts_names[i]]] <- t(readRDS(paste0(parameters["output_folder", "value"], counts_files[i])))
   rm(i)
 }
-metadata <- readRDS("~/Documents/BFX_proj/RNAseq_pipeline/_output/Chow_PNAS_2020/metadata.RDS")
+metadata <- readRDS(paste0(parameters["output_folder", "value"],"metadata.RDS"))
 # clean up
 rm(counts_files, counts_names) 
 

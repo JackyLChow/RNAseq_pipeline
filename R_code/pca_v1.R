@@ -11,10 +11,10 @@ counts_files <- counts_files[grepl("^expression", counts_files)] # identify proc
 counts_names <- str_remove(counts_files, ".RDS")
 counts_data <- list()
 for(i in 1:length(counts_names)){
-  counts_data[[counts_names[i]]] <- readRDS(paste0("~/Documents/BFX_proj/RNAseq_pipeline/_output/Chow_PNAS_2020/", counts_files[i]))
+  counts_data[[counts_names[i]]] <- readRDS(paste0(parameters["output_folder", "value"], counts_files[i]))
   rm(i)
 }
-metadata <- readRDS("~/Documents/BFX_proj/RNAseq_pipeline/_output/Chow_PNAS_2020/metadata.RDS")
+metadata <- readRDS(paste0(parameters["output_folder", "value"], "metadata.RDS"))
 # clean up
 rm(counts_files, counts_names) 
 
@@ -34,17 +34,17 @@ for(counts_ in names(counts_data)){
   pc_1_2_ <- ggplot(plot_df_, aes(PC1, PC2, color = .data[[parameters["metadata_comparison_column", "value"]]])) +
     xlab(paste0("PC1 ", pca_var_[1], "%")) +
     ylab(paste0("PC2 ", pca_var_[2], "%")) +
-    geom_point(alpha = 0.75) +
+    geom_point(alpha = 0.75, size = 2) +
     theme(aspect.ratio = 1)
   pc_3_4_ <- ggplot(plot_df_, aes(PC3, PC4, color = .data[[parameters["metadata_comparison_column", "value"]]])) +
     xlab(paste0("PC3 ", pca_var_[3], "%")) +
     ylab(paste0("PC4 ", pca_var_[4], "%")) +
-    geom_point(alpha = 0.75) +
+    geom_point(alpha = 0.75, size = 2) +
     theme(aspect.ratio = 1)
   pc_5_6_ <- ggplot(plot_df_, aes(PC5, PC6, color = .data[[parameters["metadata_comparison_column", "value"]]])) +
     xlab(paste0("PC5 ", pca_var_[5], "%")) +
     ylab(paste0("PC6 ", pca_var_[6], "%")) +
-    geom_point(alpha = 0.75) +
+    geom_point(alpha = 0.75, size = 2) +
     theme(aspect.ratio = 1)
   pc_plot_ <- plot_grid(pc_1_2_ + theme(legend.position = "none"),
                         pc_3_4_ + theme(legend.position = "none"),
