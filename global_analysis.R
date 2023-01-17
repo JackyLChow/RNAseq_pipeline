@@ -12,9 +12,9 @@ library(ggplot2)
 library(cowplot)
 
 # bioniformatics
-## counts normalization, batch correction, and differential gene expression
-library(limma)
-library(sva)
+# ## counts normalization, batch correction, and differential gene expression
+# library(limma)
+# library(sva)
 ## gene expression visualization
 library(ComplexHeatmap)
 library(circlize)
