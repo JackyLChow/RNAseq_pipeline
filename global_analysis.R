@@ -27,7 +27,7 @@ library(clusterProfiler)
 
 ###---data import---------------------------------------------------------------
 # parameters file
-parameters <- data.frame(read_csv(""))
+parameters <- data.frame(read_csv("~/Documents/BFX_proj/RNAseq_pipeline/_input/Chow_PNAS_2020.csv"))
 rownames(parameters) <- parameters[, "description"]
 
 # checkpoints
@@ -43,25 +43,26 @@ if("checkpoint.csv" %in% list.files(parameters["output_folder", "value"])){
 #write.table(data.frame("lol", "lmao"), file = checkpoint_file, sep = ",", append = T, col.names = F, row.names = F)
 
 # scripts
-normalization_and_batch_correction <- "~/Documents/BFX_proj/RNAseq_pipeline/R_code/data_load_clean_v1.R" # counts pre-processing
+# remove normalization; counts should be normalized and batch corrected before running this
+# normalization_and_batch_correction <- "~/Documents/BFX_proj/RNAseq_pipeline/R_code/data_load_clean_v1.R" # counts pre-processing
 counts_distribution <- "~/Documents/BFX_proj/RNAseq_pipeline/R_code/counts_distribution_v1.R" # QC counts by sample
 PCA_calculation <- "~/Documents/BFX_proj/RNAseq_pipeline/R_code/pca_v1.R" # PCA pipeline
 heatmap_generation <- "~/Documents/BFX_proj/RNAseq_pipeline/R_code/heatmap_v1.R" # heatmap pipeline
 WGCNA_calculation <- "~/Documents/BFX_proj/RNAseq_pipeline/R_code/wgcna_v1.R" # heatmap pipeline
 
-###---raw counts processing-----------------------------------------------------
-if(any(grepl("^expression", checkpoint$file))){
-  cat("\nnormalized counts already exist\n")
-  } else {
-    cat("\nnormalizing counts\n")
-    source(normalization_and_batch_correction)
-    if(is.na(parameters["metadata_batch_column", "value"])){
-      cat("\nno batch correction applied\n")
-    } else {
-      cat(paste0("\nbatch correction in ComBat by ", parameters["metadata_batch_column", "value"],"\n"))
-    }
-    cat("... complete ...")
-  }
+# ###---raw counts processing-----------------------------------------------------
+# if(any(grepl("^expression", checkpoint$file))){
+#   cat("\nnormalized counts already exist\n")
+#   } else {
+#     cat("\nnormalizing counts\n")
+#     source(normalization_and_batch_correction)
+#     if(is.na(parameters["metadata_batch_column", "value"])){
+#       cat("\nno batch correction applied\n")
+#     } else {
+#       cat(paste0("\nbatch correction in ComBat by ", parameters["metadata_batch_column", "value"],"\n"))
+#     }
+#     cat("... complete ...")
+#   }
 
 ###---counts_distribution-------------------------------------------------------
 if(any(grepl("sample_counts_distribution", checkpoint$file))){
