@@ -42,7 +42,7 @@ if("checkpoint.csv" %in% list.files(parameters["output_folder", "value"])){
 # scripts
 DGE_calculation <- "~/Documents/BFX_proj/RNAseq_pipeline/R_code/limma_dge_v1.R" # differential gene expression and gsea
 
-###---WGCNA---------------------------------------------------------------------
+###---DGE-----------------------------------------------------------------------
 if(any(grepl("^differential gene expression", checkpoint$file))){
   cat("\nDGE results already exist\n")
 } else {

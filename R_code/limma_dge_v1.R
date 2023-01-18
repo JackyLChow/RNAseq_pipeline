@@ -66,7 +66,7 @@ vp_ <- ggplot(deg_, aes(logFC, -log10(adj.P.Val))) +
   geom_point(data = deg_[deg_[, "show"] == "no_show", ], size = 0.1, color = "grey60") +
   geom_label_repel(data = deg_[deg_[, "show"] == "show", ], aes(label = Symbol), min.segment.length = 0) +
   geom_hline(yintercept = -log10(0.05), color = "red") +
-  xlab(paste0(levels(design_main_)[1], "    <-    logFC    ->    ", levels(design_main_[2]))) +
+  xlab(paste0(levels(design_main_)[1], "    <-    logFC    ->    ", levels(design_main_)[2])) +
   theme(aspect.ratio = 1)
 dge_out[["volcano_plot"]] <- vp_
 
