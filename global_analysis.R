@@ -101,13 +101,3 @@ if(any(grepl("^WGCNA", checkpoint$file))){
   source(WGCNA_calculation)
   cat("... complete ...")
 }
-
-
-
-
-
-
-
-
-
-

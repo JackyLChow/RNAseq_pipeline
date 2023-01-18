@@ -1,5 +1,7 @@
 ﻿description,value
 checkpoint_file,~/Documents/BFX_proj/RNAseq_pipeline/_output/Chow_PNAS_2020/checkpoint.csv
+has_raw_counts,no
+raw_counts_file,
 counts_file,~/Documents/BFX_proj/_data_public/Chow_PNAS_2020/Chow_PNAS_lognormcounts.rds
 counts_type,lognormcounts
 metadata_file,~/Documents/BFX_proj/_data_public/Chow_PNAS_2020/Chow_PNAS_meta_med.rds
