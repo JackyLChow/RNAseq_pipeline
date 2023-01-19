@@ -87,6 +87,11 @@ key_ <- AnnotationDbi::select(org.Hs.eg.db,
                               keytype = "SYMBOL")
 key_ <- key_[!duplicated(key_$SYMBOL), ] # remove duplicated symbols
 
+## load hallmark pathways
+msig_h_ <- msigdbr(species = "Homo sapiens", category = "H") %>%
+  dplyr::select(gs_name, entrez_gene) %>%
+  dplyr::rename(ont = gs_name, gene = entrez_gene)
+
 ## assign ENTREZID to gene
 ordered_genes_ <- left_join(ordered_genes_, key_, by = c("Symbol" = "SYMBOL"))
 
@@ -117,6 +122,9 @@ set.seed(415); goGSEA_ <- gseGO(ranked_list_,
                                 pvalueCutoff = 0.1) %>% data.frame()
 dge_out[["GO_GSEA"]] <- entrezid_to_symbol(goGSEA_)
 
+## Hallmark pathway enrichment
+set.seed(415); hallmarkGSEA_ <- GSEA(ranked_list_, TERM2GENE = msig_h_, scoreType = "pos") %>% data.frame()
+dge_out[["Hallmark_GSEA"]] <- entrezid_to_symbol(hallmarkGSEA_)
 
 ### export results -------------------------------------------------------------
 saveRDS(dge_out, paste0(parameters["output_folder", "value"], "differential_gene_expression_results.RDS"))
