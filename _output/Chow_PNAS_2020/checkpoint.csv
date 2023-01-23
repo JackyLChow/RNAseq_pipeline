@@ -12,3 +12,5 @@
 "differential_gene_expression_results.RDS","2023-01-18 13:11:48 EST"
 "volcano_plot.png","2023-01-19 15:37:43 EST"
 "differential_gene_expression_results.RDS","2023-01-19 15:39:22 EST"
+"PCA_on_lognormcounts.png","2023-01-23 10:20:32 EST"
+"PCA_results.RDS","2023-01-23 10:20:32 EST"
