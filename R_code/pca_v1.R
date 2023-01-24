@@ -45,7 +45,7 @@ pca_out[[paste0(counts_, "_prcomp_output")]] <- pca_ # export prcomp output
 
 ### PCA eigenvector GSEA -------------------------------------------------------
 # extract eigenvectors for first three PCs
-pca_eigenvectors_ <- pca_out[["lognormcounts_prcomp_output"]][["rotation"]][, paste0("PC", 1:3)]
+pca_eigenvectors_ <- pca_out[[paste0(counts_, "_prcomp_output")]][["rotation"]][, paste0("PC", 1:3)]
 
 for(i in paste0("PC", 1:3)){
   # make ranked gene list

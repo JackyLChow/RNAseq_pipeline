@@ -50,6 +50,8 @@ ggplot(h2h_, aes(limma_l2fc, ds2_l2fc)) +
 ggplot(h2h_, aes(-log10(limma_pval), -log10(ds2_pval))) +
   geom_point(alpha = 0.05, size = 0.1)
 
+
+
 ### export results -------------------------------------------------------------
 saveRDS(dge_h2h_out, paste0(parameters["output_folder", "value"], "dge_h2h_results.RDS"))
 
