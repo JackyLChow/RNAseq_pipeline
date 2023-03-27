@@ -6,5 +6,5 @@ counts_file,~/Documents/BFX_proj/_data_public/Chow_PNAS_2020/Chow_PNAS_lognormco
 counts_type,lognormcounts
 metadata_file,~/Documents/BFX_proj/_data_public/Chow_PNAS_2020/Chow_PNAS_meta_med.rds
 output_folder,~/Documents/BFX_proj/RNAseq_pipeline/_output/Chow_PNAS_2020/
-metadata_comparison_column,treatment
+metadata_comparison_columns,"sex,path_T_stage,treatment"
 metadata_wgcna_columns,"sex, path_T_stage, treatment"

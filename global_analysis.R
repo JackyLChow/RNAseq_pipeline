@@ -24,6 +24,7 @@ library(WGCNA)
 library(org.Hs.eg.db)
 library(ReactomePA)
 library(clusterProfiler)
+library(msigdbr)
 
 ###---data import---------------------------------------------------------------
 # parameters file
