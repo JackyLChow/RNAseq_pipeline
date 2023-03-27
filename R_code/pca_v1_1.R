@@ -135,6 +135,7 @@ for(i in comparisons_){
   print(plot_grid(title_, pc_plot_, ncol = 1, rel_heights = c(0.1, 1)))
   dev.off()
   checkpoint <- rbind(checkpoint, c(paste0("PCA_on_", counts_, "_", i, ".png"), format(Sys.time(), "%Y-%m-%d %H:%M:%S %Z"))); write.csv(checkpoint, checkpoint_file, row.names = F)
+  rm(i)
 }
 
 ### export results -------------------------------------------------------------
