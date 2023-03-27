@@ -26,7 +26,7 @@ plot_counts_ <- ggplot(counts_dataframe_, aes(sample, counts)) +
 title_ <- ggdraw() +
   draw_label(paste0("Sample counts distribution ", counts_), fontface = 'bold', x = 0, hjust = 0) +
   theme(plot.margin = margin(0, 0, 0, 7))
-png(paste0(parameters["output_folder", "value"], "sample_counts_distribution_on_", counts_, ".png"), width = 500, height = 400)
+png(paste0(parameters["output_folder", "value"], "sample_counts_distribution_on_", counts_, ".png"), width = ncol(counts_matrix_)*10, height = 400)
 print(plot_grid(title_, plot_counts_, ncol = 1, rel_heights = c(0.1, 1)))
 dev.off()
 checkpoint <- rbind(checkpoint, c(paste0("sample_counts_distribution_on_", counts_, ".png"), format(Sys.time(), "%Y-%m-%d %H:%M:%S %Z"))); write.csv(checkpoint, checkpoint_file, row.names = F)

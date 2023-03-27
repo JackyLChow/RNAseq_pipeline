@@ -48,7 +48,7 @@ if("checkpoint.csv" %in% list.files(parameters["output_folder", "value"])){
 # normalization_and_batch_correction <- "~/Documents/BFX_proj/RNAseq_pipeline/R_code/data_load_clean_v1.R" # counts pre-processing
 counts_distribution <- "~/Documents/BFX_proj/RNAseq_pipeline/R_code/counts_distribution_v1.R" # QC counts by sample
 PCA_calculation <- "~/Documents/BFX_proj/RNAseq_pipeline/R_code/pca_v1_1.R" # PCA pipeline
-heatmap_generation <- "~/Documents/BFX_proj/RNAseq_pipeline/R_code/heatmap_v1.R" # heatmap pipeline
+heatmap_generation <- "~/Documents/BFX_proj/RNAseq_pipeline/R_code/heatmap_v1_1.R" # heatmap pipeline
 WGCNA_calculation <- "~/Documents/BFX_proj/RNAseq_pipeline/R_code/wgcna_v1.R" # heatmap pipeline
 
 # ###---raw counts processing-----------------------------------------------------

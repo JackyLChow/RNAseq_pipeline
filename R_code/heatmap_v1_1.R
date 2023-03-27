@@ -23,7 +23,7 @@ counts_matrix_ <- counts_matrix_[order(rowVars(as.matrix(counts_matrix_)), decre
 counts_matrix_ <- t(scale(t(counts_matrix_))) # z-score each gene across samples
 
 # annotation
-top_anno_ <- HeatmapAnnotation(df = metadata[, comparisons_])
+top_anno_ <- HeatmapAnnotation(df = data.frame(metadata[, comparisons_]))
 
 # generate clustered heatmap
 set.seed(415); heatmap_ <- Heatmap(counts_matrix_,
