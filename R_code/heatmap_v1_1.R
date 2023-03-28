@@ -39,7 +39,7 @@ set.seed(415); heatmap_ <- Heatmap(counts_matrix_,
                                    show_heatmap_legend = T)
 
 png(paste0(parameters["output_folder", "value"], "heatmap_on_", counts_, ".png"), width = 800, height = 800)
-print(heatmap_)
+draw(heatmap_, heatmap_legend_side = "left", annotation_legend_side = "left")
 dev.off()
 checkpoint <- rbind(checkpoint, c(paste0("heatmap_on_", counts_, ".png"), format(Sys.time(), "%Y-%m-%d %H:%M:%S %Z"))); write.csv(checkpoint, checkpoint_file, row.names = F)
 
