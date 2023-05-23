@@ -14,7 +14,7 @@ counts_ <- parameters["counts_type", "value"]
 metadata <- readRDS(parameters["metadata_file", "value"])
 
 # dummify metadata for WGCNA
-dummified_columns <- unlist(strsplit(parameters["metadata_wgcna_columns", "value"], ", "))
+dummified_columns <- unlist(strsplit(parameters["metadata_wgcna_columns", "value"], ","))
 dummified_metadata <- list()
 for(col_ in dummified_columns){
   dummified_metadata[[col_]] <- dummify(metadata[, col_]) # dummify column

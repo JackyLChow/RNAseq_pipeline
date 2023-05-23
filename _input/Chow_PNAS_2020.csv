@@ -8,3 +8,4 @@ metadata_file,~/Documents/BFX_proj/_data_public/Chow_PNAS_2020/Chow_PNAS_meta_me
 output_folder,~/Documents/BFX_proj/RNAseq_pipeline/_output/Chow_PNAS_2020/
 metadata_comparison_columns,"sex,path_T_stage,treatment"
 metadata_wgcna_columns,"sex, path_T_stage, treatment"
+counts_rows,SYMBOL
