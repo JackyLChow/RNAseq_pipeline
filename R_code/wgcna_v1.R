@@ -34,7 +34,7 @@ gene_synonyms <- AnnotationDbi::select(gene_synonyms,
 gene_synonyms <- gene_synonyms[!duplicated(gene_synonyms$SYMBOL), ]
 
 # trim counts data for speed
-trim_input_counts <- 5000
+trim_input_counts <- 10000
 
 ###---WGCNA pipeline------------------------------------------------------------
 
